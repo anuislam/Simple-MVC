@@ -1,0 +1,23 @@
+{
+    "name": "anuislam/mvc",
+    "description": "This is a simple project",
+    "type": "project",
+    "require": {
+        "php": "^7.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anu islam",
+            "email": "anuislams@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+     "autoload": {
+        "psr-4": {
+            "Src\\": "src/",
+            "Controller\\": "controller/"
+        },
+        "files": ["src/helpers/helpers.php"]
+    }
+}

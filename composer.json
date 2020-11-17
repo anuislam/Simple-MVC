@@ -3,7 +3,8 @@
     "description": "This is a simple project",
     "type": "project",
     "require": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "phpmailer/phpmailer": "~6.1"
     },
     "license": "MIT",
     "authors": [
@@ -16,7 +17,8 @@
      "autoload": {
         "psr-4": {
             "Src\\": "src/",
-            "Controller\\": "controller/"
+            "Controller\\": "controller/",
+            "Model\\": "Model/"
         },
         "files": ["src/helpers/helpers.php"]
     }

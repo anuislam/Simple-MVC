@@ -11,6 +11,7 @@ class Route{
 	private $controller;
 	private $where;
 	private $method;
+	private $middleware;
 	
 	function __construct(){
 		$this->routes = [];
@@ -19,12 +20,50 @@ class Route{
 		$this->name = '';
 		$this->where = [];
 		$this->method = '';
+		$this->middleware = false;
+	}
+
+	public function url($name, $data = []){
+		$routeConf = config('routes');
+		$check = ltrim($routeConf[$name]['route_name'], '/');
+		if (count($data) > 0) {
+			foreach ($data as $key => $value) {
+				$check = str_replace('{'.$key.'}', $value, $check);
+			}
+		}
+		return $check;
 	}
 
 	public function get($routeexp, $controller){
 		$this->controller 	= explode('@', $controller);
 		$this->routeexp 	= $routeexp;
 		$this->method 		= 'get';
+		return $this;
+	}
+
+	public function post($routeexp, $controller){
+		$this->controller 	= explode('@', $controller);
+		$this->routeexp 	= $routeexp;
+		$this->method 		= 'post';
+		return $this;
+	}
+
+	public function put($routeexp, $controller){
+		$this->controller 	= explode('@', $controller);
+		$this->routeexp 	= $routeexp;
+		$this->method 		= 'put';
+		return $this;
+	}
+	public function patch($routeexp, $controller){
+		$this->controller 	= explode('@', $controller);
+		$this->routeexp 	= $routeexp;
+		$this->method 		= 'patch';
+		return $this;
+	}
+	public function delete($routeexp, $controller){
+		$this->controller 	= explode('@', $controller);
+		$this->routeexp 	= $routeexp;
+		$this->method 		= 'delete';
 		return $this;
 	}
 
@@ -47,6 +86,7 @@ class Route{
 			'where' 		=> $this->where,
 			'method' 		=> $this->method,
 			'regex' 		=> $this->makeRegex(),
+			'middleware' 		=> $this->middleware,
 		];
 		configSet('routes', $routeConf);
 		return false;
@@ -73,6 +113,11 @@ class Route{
 			}
 		}
 		return $ret;
+	}
+
+	public function middleware($data){
+		$this->middleware = $data;
+		return $this;
 	}
 
 }

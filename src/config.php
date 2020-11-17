@@ -14,8 +14,9 @@ class Config{
 
 		if (empty(@$GLOBALS['site_config'][$file][$option]) === false) {
 			$conf = $GLOBALS['site_config'][$file];
+
 		}else{
-			$conf = require_once($location.$file.'.php');
+			$conf = require($location.$file.'.php');
 		}
 		return $conf[$option];
 	}

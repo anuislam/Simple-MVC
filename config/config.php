@@ -1,7 +1,11 @@
 <?php
 
 return [
+	'app_name' 		=> 'This is my app name',
 
-	'my_app_name' 		=> 'This is my app name',
-	'routes' 			=> []
+	'routes' 			=> [],
+
+	'defaultRole' 		=> 'admin',
+
+	'debug' 			=> true,
 ];
